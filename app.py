@@ -14,6 +14,6 @@ db.init_app(app)
 
 from routes import *
 
-#if __name__ == "__main__":
-    #app.config['TEMPLATES_AUTO_RELOAD'] = True
-    #app.run(debug=True) # Запускаємо веб-сервер з цього файлу
+if __name__ == "__main__":
+    app.config['TEMPLATES_AUTO_RELOAD'] = True
+    app.run(debug=True) # Запускаємо веб-сервер з цього файлу
