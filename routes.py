@@ -18,3 +18,8 @@ def item(id):
 @app.route("/about")
 def about():
     return render_template("about.html")
+
+@app.route("/purchase/<item_id>")
+def purchase(item_id):
+    item = Item.query.get(item_id)
+    return render_template("purchase.html", item = item)
