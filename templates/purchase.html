@@ -45,8 +45,8 @@
         <!-- Product section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 my-5">
-                <div class="row gx-4 gx-lg-5 align-items-center">
-                    <div class="col mb-5">
+                <div class="row align-items-center">
+                    <div class="col-12 col-md-4">
                         <div class="card h-100">
                             <!-- Product image-->
                             <img class="card-img-top" src="{{item.image}}" alt="..." />
@@ -66,11 +66,56 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ url_for('item', id = item.id) }}">Купити</a></div>
+                                <div class="text-center"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-12 col-md-8">
+                        <form action="" method="POST">
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Ім'я прізвище</label>
+                            <input required name="name" type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+                          </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Номер телефону</label>
+                            <input required name="phone" type="phone" class="form-control" id="exampleFormControlInput1" placeholder="+380 xx xxx xx xx">
+                          </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Електронна пошта</label>
+                            <input required name="email" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                          </div>
+                        <select required name="size" class="form-select" aria-label="Default select example">
+                            <option selected>Виберіть розмір</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                            <option value="45">45</option>
+                            <option value="46">46</option>
+                            <option value="46.5">46.5</option>
+                          </select>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Місто</label>
+                            <input required name="city" type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+                          </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Адреса</label>
+                            <input required name="address" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Вулиця Будинок Номер квартири">
+                          </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Номер Нової Пошти</label>
+                            <input required name="nova_posta" type="text" class="form-control" id="exampleFormControlInput1" placeholder="№ x">
+                          </div>
+                        <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                            <i class="bi-cart-fill me-1"></i>
+                            Оформити замовлення
+                        </button>
+                    </form>
                     </div>
                 </div>
             </div>

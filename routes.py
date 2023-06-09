@@ -1,13 +1,15 @@
 import datetime
 from flask import render_template,  url_for, request, flash, redirect
 from app import app, db
-from models import User, Item, Order
-from flask_login import current_user, login_user, login_required, logout_user
+from models import Item, Order
 
 @app.route("/")
 def index():
     items = Item.query.all()
-    return render_template("index.html", items = items)
+    category_map = set()
+    for item in items:
+        category_map.add(item.category)
+    return render_template("index.html", items = items, categories = category_map)
 
 @app.route("/item/<id>")
 def item(id):
@@ -19,7 +21,25 @@ def item(id):
 def about():
     return render_template("about.html")
 
-@app.route("/purchase/<item_id>")
+@app.route("/purchase/<item_id>", methods = ["POST", "GET"])
 def purchase(item_id):
     item = Item.query.get(item_id)
+    if request.method == "POST":
+        new_order = Order(item_id=item.id,
+                            name=request.form['name'], 
+                            email=request.form['email'],
+                            phone=request.form['phone'],
+                            size=request.form['size'],
+                            city=request.form['city'],
+                            address=request.form['address'],
+                            nova_posta=request.form['nova_posta'])
+        db.session.add(new_order)
+        db.session.commit()
+        flash("Замовлення прийнято, очікуйте на дзвінок", "alert-success")
+        return redirect(url_for('index'))
     return render_template("purchase.html", item = item)
+
+@app.route("/<category>")
+def category(category):
+    items = Item.query.filter_by(category=category).all()
+    return render_template("category.html", items = items, category = category)
